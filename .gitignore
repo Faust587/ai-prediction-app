@@ -1,0 +1,136 @@
+# Node.js
+node_modules/
+./front-end/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-log.txt
+pip-delete-this-directory.txt
+.installed.cfg
+*.egg-info
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+miniconda3/
+Miniconda3-latest-MacOSX-arm64.sh
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+output.txt
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+.cache/
+
+# Neural network data and models
+neural-network/data/
+neural-network/models/*.keras
+neural-network/models/*.h5
+neural-network/models/*.pkl
+neural-network/models/*.json
+python-api/model/*.keras
+python-api/model/*.h5
+
+# Data files
+*.csv
+*.npz
+*.pkl
+*.pickle
+*.joblib
+
+# Archives and compressed files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+Archive.zip
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Testing
+coverage/
+*.coverage
+.nyc_output/
+.pytest_cache/
+.tox/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+.temp/
+temp/
+
+# OS specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# TensorFlow
+*.h5
+*.hdf5
+checkpoint
+*.ckpt
+*.ckpt.data-*
+*.ckpt.index
+*.ckpt.meta
+
+# Misc
+.sass-cache/
+connect.lock
+typings/
+
