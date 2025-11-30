@@ -1,0 +1,38 @@
+services:
+  python-api:
+    build: ./python-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    build: ./back-end
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PYTHON_API_URL=http://python-api:8000
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      - python-api
+
+  frontend:
+    build: ./front-end
+    ports:
+      - "80:80"
+    depends_on:
+      - python-api
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
