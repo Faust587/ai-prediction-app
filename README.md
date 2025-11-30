@@ -1,106 +1,106 @@
 # Trading Prediction App
 
-Додаток для прогнозування цін криптовалют з використанням нейронних мереж.
+Application for predicting cryptocurrency prices using neural networks.
 
-## Архітектура
+## Architecture
 
-Проект складається з трьох основних компонентів:
+The project consists of three main components:
 
-- **Python API** - FastAPI сервіс для прогнозування цін з використанням TensorFlow
-- **Backend** - Node.js/Express сервіс для роботи з даними Binance
-- **Frontend** - React додаток з Material-UI
+- **Python API** - FastAPI service for price prediction using TensorFlow
+- **Backend** - Node.js/Express service for working with Binance data
+- **Frontend** - React application with Material-UI
 
-## Запуск з Docker
+## Running with Docker
 
-### Передумови
+### Prerequisites
 
 - Docker
 - Docker Compose
 
-### Швидкий старт
+### Quick Start
 
-#### Метод 1: Використання скриптів (рекомендовано)
+#### Method 1: Using scripts (recommended)
 
-1. Клонуйте репозиторій та перейдіть до директорії проекту:
+1. Clone the repository and navigate to the project directory:
 
 ```bash
 cd trading-prediction-app
 ```
 
-2. Запустіть додаток:
+2. Start the application:
 
 ```bash
 ./start.sh
 ```
 
-3. Зупиніть додаток:
+3. Stop the application:
 
 ```bash
 ./stop.sh
 ```
 
-#### Метод 2: Використання Docker Compose напряму
+#### Method 2: Using Docker Compose directly
 
-1. Клонуйте репозиторій та перейдіть до директорії проекту:
+1. Clone the repository and navigate to the project directory:
 
 ```bash
 cd trading-prediction-app
 ```
 
-2. Зберіть та запустіть всі сервіси:
+2. Build and run all services:
 
 ```bash
 docker compose up --build
 ```
 
-Або запустіть у фоновому режимі:
+Or run in the background:
 
 ```bash
 docker compose up -d --build
 ```
 
-3. Додаток буде доступний за адресами:
+3. The application will be available at:
    - **Frontend**: http://localhost
    - **Backend API**: http://localhost:3000
    - **Python API**: http://localhost:8000
    - **API Documentation**: http://localhost:8000/docs
 
-### Корисні команди
+### Useful Commands
 
-#### Переглянути статус контейнерів
+#### View container status
 
 ```bash
 docker compose ps
 ```
 
-#### Переглянути логи
+#### View logs
 
 ```bash
-# Всі сервіси
+# All services
 docker compose logs
 
-# Конкретний сервіс
+# Specific service
 docker compose logs frontend
 docker compose logs backend
 docker compose logs python-api
 
-# Слідкувати за логами в реальному часі
+# Follow logs in real-time
 docker compose logs -f
 ```
 
-#### Зупинити сервіси
+#### Stop services
 
 ```bash
 docker compose down
 ```
 
-#### Зупинити сервіси та видалити volumes
+#### Stop services and remove volumes
 
 ```bash
 docker compose down -v
 ```
 
-#### Перезбудувати конкретний сервіс
+#### Rebuild specific service
 
 ```bash
 docker compose build frontend
@@ -108,7 +108,7 @@ docker compose build backend
 docker compose build python-api
 ```
 
-#### Перезапустити сервіс
+#### Restart service
 
 ```bash
 docker compose restart frontend
@@ -116,14 +116,14 @@ docker compose restart backend
 docker compose restart python-api
 ```
 
-## Структура проекту
+## Project Structure
 
 ```
 trading-prediction-app/
-├── python-api/          # FastAPI сервіс для ML прогнозів
+├── python-api/          # FastAPI service for ML predictions
 │   ├── api.py
 │   ├── model/
-│   │   └── model.keras  # Навчена LSTM модель
+│   │   └── model.keras  # Trained LSTM model
 │   ├── Dockerfile
 │   └── requirements.txt
 ├── back-end/            # Node.js/Express backend
@@ -140,17 +140,17 @@ trading-prediction-app/
 │   ├── Dockerfile
 │   ├── nginx.conf
 │   └── package.json
-├── neural-network/      # Код для навчання моделі
+├── neural-network/      # Code for model training
 │   ├── model_trainer.py
 │   ├── config.py
 │   └── data/
-├── docker-compose.yml   # Оркестрація всіх сервісів
+├── docker-compose.yml   # Orchestration of all services
 ├── README.md
-├── DOCKER_SETUP.md      # Детальна документація Docker
-└── NEURAL_NETWORK.md    # Пояснення роботи нейронної мережі
+├── DOCKER_SETUP.md      # Detailed Docker documentation
+└── NEURAL_NETWORK.md    # Neural network explanation
 ```
 
-## Архітектура системи
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -188,32 +188,32 @@ trading-prediction-app/
 │                                       model.keras             │
 └─────────────────────────────────────────────────────────────┘
 
-Потік даних для прогнозування:
-1. Користувач вибирає криптовалютну пару у Frontend
-2. Frontend → Backend: запит прогнозу
-3. Backend → Binance API: отримання історичних даних (30+ точок)
-4. Backend → Python API: відправка даних для аналізу
-5. Python API → LSTM Model: прогнозування
-6. Python API → Backend: результат (ймовірність зростання)
-7. Backend → Frontend: відформатований прогноз
-8. Frontend: відображення результату та графіка
+Data flow for prediction:
+1. User selects cryptocurrency pair in Frontend
+2. Frontend → Backend: prediction request
+3. Backend → Binance API: get historical data (30+ points)
+4. Backend → Python API: send data for analysis
+5. Python API → LSTM Model: prediction
+6. Python API → Backend: result (probability of price increase)
+7. Backend → Frontend: formatted prediction
+8. Frontend: display result and chart
 ```
 
-## Як працює нейронна мережа
+## How the Neural Network Works
 
-Детальне пояснення архітектури та роботи LSTM моделі для прогнозування криптовалют дивіться в [NEURAL_NETWORK.md](NEURAL_NETWORK.md).
+For detailed explanation of the architecture and operation of the LSTM model for cryptocurrency prediction, see [NEURAL_NETWORK.md](NEURAL_NETWORK.md).
 
-Коротко:
+Briefly:
 
-- **Модель**: LSTM (Long Short-Term Memory) нейронна мережа
-- **Вхідні дані**: 30 часових точок × 5 ознак (open, high, low, close, volume)
-- **Вихід**: ймовірність зростання ціни (0-1)
-- **Фреймворк**: TensorFlow/Keras
-- **Точність**: залежить від навчальних даних
+- **Model**: LSTM (Long Short-Term Memory) neural network
+- **Input data**: 30 time points × 5 features (open, high, low, close, volume)
+- **Output**: probability of price increase (0-1)
+- **Framework**: TensorFlow/Keras
+- **Accuracy**: depends on training data
 
-## Розробка
+## Development
 
-### Локальна розробка без Docker
+### Local development without Docker
 
 #### Python API
 
@@ -239,54 +239,54 @@ npm install
 npm run dev
 ```
 
-## Налаштування
+## Configuration
 
-### Змінні середовища
+### Environment Variables
 
-Ви можете налаштувати змінні середовища в `docker-compose.yml`:
+You can configure environment variables in `docker-compose.yml`:
 
 #### Backend
 
-- `NODE_ENV` - середовище Node.js (за замовчуванням: `production`)
-- `PYTHON_API_URL` - URL Python API (за замовчуванням: `http://python-api:8000`)
-- `PORT` - порт сервера (за замовчуванням: `3000`)
+- `NODE_ENV` - Node.js environment (default: `production`)
+- `PYTHON_API_URL` - Python API URL (default: `http://python-api:8000`)
+- `PORT` - server port (default: `3000`)
 
 #### Python API
 
-- `PYTHONUNBUFFERED` - вимкнення буферизації Python виводу
+- `PYTHONUNBUFFERED` - disable Python output buffering
 
-Для локальної розробки без Docker створіть `.env` файли:
+For local development without Docker, create `.env` files:
 
-- `back-end/.env` - для backend (використовуйте `PYTHON_API_URL=http://localhost:8000`)
-- `python-api/.env` - для Python API
+- `back-end/.env` - for backend (use `PYTHON_API_URL=http://localhost:8000`)
+- `python-api/.env` - for Python API
 
-### Порти
+### Ports
 
-За замовчуванням використовуються наступні порти:
+The following ports are used by default:
 
 - Frontend: 80
 - Backend: 3000
 - Python API: 8000
 
-Щоб змінити порти, відредагуйте `docker-compose.yml`.
+To change ports, edit `docker-compose.yml`.
 
 ## Troubleshooting
 
-### Контейнер не запускається
+### Container won't start
 
-Перевірте логи:
+Check logs:
 
 ```bash
 docker compose logs [service-name]
 ```
 
-### Порт вже зайнятий
+### Port already in use
 
-Змініть порти в `docker-compose.yml` або зупиніть процес, що використовує порт.
+Change ports in `docker-compose.yml` or stop the process using the port.
 
-### Проблеми з build
+### Build issues
 
-Очистіть Docker cache:
+Clear Docker cache:
 
 ```bash
 docker compose down
@@ -294,6 +294,6 @@ docker system prune -a
 docker compose build --no-cache
 ```
 
-## Ліцензія
+## License
 
 MIT
